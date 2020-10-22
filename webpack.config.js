@@ -1,0 +1,75 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+const path = require('path');
+const { VueLoaderPlugin } = require('vue-loader');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const StylelintPlugin = require('stylelint-webpack-plugin');
+
+module.exports = (env = {}) => ({
+  mode: env.prod ? 'production' : 'development',
+  devtool: env.prod ? 'source-map' : 'cheap-module-eval-source-map',
+  entry: path.resolve(__dirname, './src/main.ts'),
+  output: {
+    path: path.resolve(__dirname, './dist'),
+    publicPath: '/dist/',
+  },
+  resolve: {
+    extensions: ['.js', '.ts', '.vue', '.css'],
+    alias: {
+      vue: '@vue/runtime-dom',
+      '@src': path.resolve(__dirname, 'src'),
+    },
+  },
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        loader: 'ts-loader',
+        options: {
+          appendTsSuffixTo: [/\.vue$/],
+        },
+      },
+      {
+        test: /\.vue$/,
+        use: 'vue-loader',
+      },
+      {
+        test: /\.png$/,
+        use: {
+          loader: 'url-loader',
+          options: { limit: 8192 },
+        },
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: { hmr: !env.prod },
+          },
+          'css-loader',
+        ],
+      },
+      {
+        test: /\.scss$/,
+        use: ['vue-style-loader', 'css-loader', 'sass-loader'],
+      },
+    ],
+  },
+  plugins: [
+    new VueLoaderPlugin(),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+    }),
+    new StylelintPlugin({
+      files: ['src/**/*.vue', 'src/**/*.scss', 'src/**/*.css'],
+    }),
+  ],
+  devServer: {
+    inline: true,
+    hot: true,
+    stats: 'minimal',
+    contentBase: __dirname,
+    overlay: true,
+  },
+});
