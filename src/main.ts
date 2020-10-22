@@ -1,4 +1,7 @@
 import { createApp } from 'vue';
+import VCalendar from 'v-calendar';
 import App from './App.vue';
 
-createApp(App).mount('#app');
+const app = createApp(App);
+app.use(VCalendar);
+app.mount('#app');

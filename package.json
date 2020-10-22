@@ -1,5 +1,5 @@
 {
-  "name": "vue-form",
+  "name": "vue-datetime-field",
   "version": "1.0.0",
   "description": "",
   "author": "ushinji",
@@ -9,6 +9,8 @@
     "build": "webpack --env.prod"
   },
   "dependencies": {
+    "date-fns": "^2.16.1",
+    "v-calendar": "^1.0.8",
     "vue": "^3.0.2"
   },
   "devDependencies": {
