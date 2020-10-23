@@ -1,15 +1,16 @@
 module.exports = {
-  parser: 'vue-eslint-parser',
-  parserOptions: {
-    parser: '@typescript-eslint/parser',
+  root: true,
+  env: {
+    node: true
   },
   extends: [
-    'plugin:@typescript-eslint/recommended',
-    'plugin:vue/recommended',
-    'prettier/@typescript-eslint',
-    'plugin:prettier/recommended',
+    "eslint:recommended",
+    "plugin:vue/vue3-recommended",
+    "@vue/typescript",
+    "plugin:prettier/recommended",
+    "prettier/vue",
+    "prettier/@typescript-eslint",
   ],
-  plugins: ['vue', 'prettier'],
   settings: {
     'import/resolver': {
       webpack: {
@@ -25,9 +26,11 @@ module.exports = {
       'error',
       {
         html: {
-          void: 'always',
-        },
-      },
+          'void': 'always'
+        }
+      }
     ],
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
   },
 };
