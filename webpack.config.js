@@ -2,7 +2,6 @@
 const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const StylelintPlugin = require('stylelint-webpack-plugin');
 
 module.exports = (env = {}) => ({
   mode: env.prod ? 'production' : 'development',
@@ -16,7 +15,7 @@ module.exports = (env = {}) => ({
     extensions: ['.js', '.ts', '.vue', '.css'],
     alias: {
       vue: '@vue/runtime-dom',
-      '@src': path.resolve(__dirname, 'src'),
+      '@': path.resolve(__dirname, 'src'),
     },
   },
   module: {
@@ -60,9 +59,6 @@ module.exports = (env = {}) => ({
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].css',
-    }),
-    new StylelintPlugin({
-      files: ['src/**/*.vue', 'src/**/*.scss', 'src/**/*.css'],
     }),
   ],
   devServer: {
