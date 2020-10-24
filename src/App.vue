@@ -16,8 +16,10 @@ export default defineComponent({
     Form,
   },
   setup() {
-    const onSubmit = () => {
+    const onSubmit = (startedAt: Date, finishedAt: Date) => {
       console.log('===submit===');
+      console.log(startedAt);
+      console.log(finishedAt);
     };
     const onCancel = () => {
       console.log('===cancel===');

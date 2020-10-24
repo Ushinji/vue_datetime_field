@@ -7,6 +7,17 @@
           <DateField id="startedAt" v-model="startedAt" name="startedAt" />
         </div>
       </div>
+      <div class="field">
+        <label class="label">終了日時</label>
+        <div class="control">
+          <DateTimeField
+            id="finishedAt"
+            :value="finishedAt"
+            name="finishedAt"
+            :on-change="onChangefinishedAt"
+          />
+        </div>
+      </div>
       <div class="field is-grouped">
         <div class="control">
           <button class="button is-link is-light">キャンセル</button>
@@ -20,24 +31,37 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, PropType } from 'vue';
 import DateField from '@/components/molecules/DateField/index.vue';
+import DateTimeField from '@/components/molecules/DateTimeField/index.vue';
 
 export default defineComponent({
   components: {
     DateField,
+    DateTimeField,
   },
   props: {
-    onSubmit: { type: Function, required: true },
-    onCansel: { type: Function, required: true },
+    onSubmit: {
+      // eslint-disable-next-line no-unused-vars
+      type: Function as PropType<(startedAt: Date, finishedAt: Date) => void>,
+      required: true,
+    },
+    onCansel: {
+      // eslint-disable-next-line no-unused-vars
+      type: Function as PropType<() => void>,
+      required: true,
+    },
   },
   setup(props) {
     const startedAt = ref(new Date());
-    const handleSubmit = async () => {
-      console.log(startedAt.value);
-      await props.onSubmit();
+    const finishedAt = ref(new Date());
+    const onChangefinishedAt = (value: Date) => {
+      finishedAt.value = value;
     };
-    return { startedAt, handleSubmit };
+    const handleSubmit = async () => {
+      await props.onSubmit(startedAt.value, finishedAt.value);
+    };
+    return { startedAt, finishedAt, onChangefinishedAt, handleSubmit };
   },
 });
 </script>
