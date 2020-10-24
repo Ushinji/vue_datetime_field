@@ -1,5 +1,5 @@
 <template>
-  <div :id="id" :name="name">
+  <div :id="id" :name="name" class="datetime-field">
     <DateField v-model="date" />
     <input v-model="time" type="time" />
   </div>
@@ -48,3 +48,11 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.datetime-field {
+  display: flex;
+  justify-content: space-between;
+  width: 240px;
+}
+</style>
