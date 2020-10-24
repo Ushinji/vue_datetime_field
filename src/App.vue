@@ -1,19 +1,28 @@
 <template>
   <section class="section">
     <div class="container">
-      <h1 class="title">Hello World</h1>
-      <Icon>alarm</Icon>
+      <h1 class="title">Date Time Field Sample Form</h1>
+      <Form :on-submit="onSubmit" :on-cansel="onCancel" />
     </div>
   </section>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Icon from './components/atoms/Icon/index.vue';
+import Form from '@/components/organisms/Form/index.vue';
 
 export default defineComponent({
   components: {
-    Icon,
+    Form,
+  },
+  setup() {
+    const onSubmit = () => {
+      console.log('===submit===');
+    };
+    const onCancel = () => {
+      console.log('===cancel===');
+    };
+    return { onSubmit, onCancel };
   },
 });
 </script>
