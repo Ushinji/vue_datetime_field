@@ -4,7 +4,7 @@
       <div class="field">
         <label class="label">開始日</label>
         <div class="control">
-          <DatePicker id="startedAt" v-model="startedAt" name="startedAt" />
+          <DateField id="startedAt" v-model="startedAt" name="startedAt" />
         </div>
       </div>
       <div class="field is-grouped">
@@ -21,11 +21,11 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import DatePicker from '@/components/molecules/DatePicker/index.vue';
+import DateField from '@/components/molecules/DateField/index.vue';
 
 export default defineComponent({
   components: {
-    DatePicker,
+    DateField,
   },
   props: {
     onSubmit: { type: Function, required: true },
