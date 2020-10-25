@@ -20,7 +20,11 @@
       </div>
       <div class="field is-grouped">
         <div class="control">
-          <button class="button is-link is-light" @click="onCancel">
+          <button
+            class="button is-link is-light"
+            type="button"
+            @click="onCancel"
+          >
             キャンセル
           </button>
         </div>
