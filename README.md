@@ -10,3 +10,13 @@ Vue DateField and DateTimeFiled sample
 * vue3-datepicker
 * ESLint
 * prettier
+
+# Start
+
+```
+# build
+$ npm install
+
+# start server
+$ npm run dev
+```
