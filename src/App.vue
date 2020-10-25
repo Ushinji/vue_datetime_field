@@ -2,7 +2,7 @@
   <section class="section">
     <div class="container">
       <h1 class="title">Date Time Field Sample Form</h1>
-      <Form :on-submit="onSubmit" :on-cansel="onCancel" />
+      <Form :on-submit="onSubmit" :on-cancel="onCancel" />
     </div>
   </section>
 </template>

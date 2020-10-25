@@ -20,7 +20,9 @@
       </div>
       <div class="field is-grouped">
         <div class="control">
-          <button class="button is-link is-light">キャンセル</button>
+          <button class="button is-link is-light" @click="onCancel">
+            キャンセル
+          </button>
         </div>
         <div class="control">
           <button class="button is-link">送信する</button>
@@ -46,7 +48,7 @@ export default defineComponent({
       type: Function as PropType<(startedAt: Date, finishedAt: Date) => void>,
       required: true,
     },
-    onCansel: {
+    onCancel: {
       // eslint-disable-next-line no-unused-vars
       type: Function as PropType<() => void>,
       required: true,
